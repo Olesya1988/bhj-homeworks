@@ -13,6 +13,7 @@ let arrSuccess = Array.from(showSuccess);
 for (let i = 0; i < arrSuccess.length; i++) {
     showSuccess[i].onclick = function() {
         modalSuccess.className = "modal modal_active";
+        modalMain.className = "modal";
     }
 }
 
