@@ -42,12 +42,12 @@ function deadlineCountdown() {
         }    
 
         if (seconds.textContent < 0) {
-            minutes.textContent -= 1;
+            minutes.textContent -= 1;            
             seconds.textContent = 59;
         }
 
         if (minutes.textContent < 0) {
-            hours.textContent -= 1;
+            hours.textContent -= 1;            
             minutes.textContent = 59;
         }
     }
