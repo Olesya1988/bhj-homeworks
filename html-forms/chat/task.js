@@ -62,5 +62,3 @@ chatWidgetInput.addEventListener('keydown', function(e) {
     chatWidgetInput.value = '';
     }    
     });
-
-    document.querySelectorAll('.message__text').lastChild.scrollIntoView();
