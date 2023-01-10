@@ -4,7 +4,7 @@ const tasksAdd = document.querySelector('.tasks__add');
 const task = document.querySelectorAll('.task');
 
 tasksAdd.onclick = function() {
-    if (input.value) {
+    if (input.value.trim()) {
         tasksList.insertAdjacentHTML('beforeend', `
         <div class="task">
         <div class="task__title">${input.value}</div>
@@ -14,15 +14,13 @@ tasksAdd.onclick = function() {
         input.value = '';
     }    
 
-    const taskRemove = Array.from(document.querySelectorAll('.task__remove'));
+    const taskRemove = tasksList.lastElementChild.querySelector('.task__remove');
 
-    taskRemove.forEach((el) => {
-        el.onclick = function () {
-            let div = el.closest('.task');
+    taskRemove.onclick = function() {
+            let div = taskRemove.closest('.task');
             div.remove();
             return false;
-        };
-    });
+        };    
     
     return false;
 };

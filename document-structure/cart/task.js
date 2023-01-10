@@ -50,16 +50,14 @@ product.forEach((el) => {
                 let productAmount = +productInCard.lastElementChild.textContent;
                 productInCard.lastElementChild.textContent = productAmount + amount;
             };
-        };
+        };   
 
-        const buttonRemove = Array.from(document.querySelectorAll('.cart__product-remove'));
+        const buttonRemove = cart.lastElementChild.querySelector('.cart__product-remove');
 
-        buttonRemove.forEach((elem) => {
-            elem.onclick = function() {
-                let div = elem.closest('.cart__product');
+        buttonRemove.onclick = function() {
+                let div = buttonRemove.closest('.cart__product');
                 div.remove();
                 return false;
-            };
-        });
+            };        
     };
 });
