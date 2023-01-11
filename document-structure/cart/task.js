@@ -30,27 +30,25 @@ product.forEach((el) => {
     productAdd.onclick = function() {
         const value = el.querySelector('.product__quantity-value');
         let amount = +value.textContent;
+        
+        let id = el.getAttribute('data-id');
+        let src = el.querySelector('.product__image').getAttribute('src');
 
-        if (amount > 0) {
-            let id = el.getAttribute('data-id');
-            let src = el.querySelector('.product__image').getAttribute('src');
+        let products = [...cart.children];
+        const productInCard = products.find(i => i.getAttribute('data-id') === id);
 
-            let products = [...cart.children];
-            const productInCard = products.find(i => i.getAttribute('data-id') === id);
-
-            if (!productInCard) {
-                cart.insertAdjacentHTML("beforeend", `
-                <div class="cart__product" data-id = ${id}>
-                <a href="#" class="cart__product-remove" style="color: red; font-size: 10px; text-decoration: none">Удалить</a>
-                <img class="cart__product-image" src=${src}>
-                <div class="cart__product-count"> ${value.textContent}</div>                    
-                </div>
-                `);
-            } else {
-                let productAmount = +productInCard.lastElementChild.textContent;
-                productInCard.lastElementChild.textContent = productAmount + amount;
-            };
-        };   
+        if (!productInCard) {
+            cart.insertAdjacentHTML("beforeend", `
+            <div class="cart__product" data-id = ${id}>
+            <a href="#" class="cart__product-remove" style="color: red; font-size: 10px; text-decoration: none">Удалить</a>
+            <img class="cart__product-image" src=${src}>
+            <div class="cart__product-count"> ${value.textContent}</div>                    
+            </div>
+            `);
+        } else {
+            let productAmount = +productInCard.lastElementChild.textContent;
+            productInCard.lastElementChild.textContent = productAmount + amount;
+        };        
 
         const buttonRemove = cart.lastElementChild.querySelector('.cart__product-remove');
 
