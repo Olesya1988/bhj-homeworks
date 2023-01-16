@@ -39,7 +39,7 @@ chatWidgetInput.addEventListener('keydown', function(e) {
             minutes = '0' + minutes;
         }
 
-        if (chatWidgetInput.value) {
+        if (chatWidgetInput.value.trim()) {
             messages.innerHTML += `
             <div class="message message_client">
             <div class="message__time">${hours}:${minutes}</div>
@@ -61,4 +61,6 @@ chatWidgetInput.addEventListener('keydown', function(e) {
         
     chatWidgetInput.value = '';
     }    
+    
+    messages.lastElementChild.scrollIntoView();
     });
