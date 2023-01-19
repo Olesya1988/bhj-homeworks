@@ -17,32 +17,22 @@ form.addEventListener('submit', (event) => {
                 let savedId = localStorage.getItem('id');
                 userId.textContent = savedId;
                 signin.classList.remove('signin_active');
-                welcome.classList.add('welcome_active');
+                welcome.classList.add('welcome_active');                
             } else {
                 alert('Неверный логин/пароль');               
             };
         };
     });
 
-    button.addEventListener('click', () => {
-        let inputFieldsArray = [];
-        inputFields.forEach((elem) => {
-            inputFieldsArray.push(elem.value);
-        });
-        localStorage.setItem('key', JSON.stringify(inputFieldsArray));
-    });
-
-    window.addEventListener('load', () => {
-        let inputFieldsArray = JSON.parse(localStorage.getItem('key'));
-        inputFields.forEach((elem, i) => {
-            elem.value = inputFieldsArray[i];
-        });
-    });
-    
     xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/auth');
     
     const formData = new FormData(form);
     xhr.send(formData);
 
     event.preventDefault();
+});
+
+window.addEventListener('load', () => {        
+    userId.textContent = localStorage.getItem('id');        
+    welcome.classList.add('welcome_active');
 });
