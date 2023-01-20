@@ -5,6 +5,8 @@ const signin = document.querySelector('.signin');
 const welcome = document.querySelector('.welcome');
 const button = document.querySelector('.btn');
 
+let savedId;
+
 form.addEventListener('submit', (event) => {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('readystatechange', () => {
@@ -14,7 +16,7 @@ form.addEventListener('submit', (event) => {
             if (responseText.success === true) {
                 inputFields.value = '';
                 localStorage.setItem('id', JSON.stringify(responseText.user_id));
-                let savedId = localStorage.getItem('id');
+                savedId = localStorage.getItem('id');
                 userId.textContent = savedId;
                 signin.classList.remove('signin_active');
                 welcome.classList.add('welcome_active');                
@@ -32,7 +34,11 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
 });
 
-window.addEventListener('load', () => {        
-    userId.textContent = localStorage.getItem('id');        
-    welcome.classList.add('welcome_active');
+window.addEventListener('load', () => {
+    savedId = localStorage.getItem('id');
+    if (savedId) {
+        userId.textContent = savedId;
+        signin.classList.remove('signin_active');
+        welcome.classList.add('welcome_active'); 
+    }
 });
